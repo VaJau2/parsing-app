@@ -6,7 +6,7 @@ use App\Services\ParserService\DTO\AuctionDTO;
 
 interface ParserInterface
 {
-    public function __construct(string $url);
+    public function initUrl(string $url): self;
 
     /**
      * @param int $page

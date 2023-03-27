@@ -64,7 +64,7 @@ class AuctionsTest extends TestCase
             </html>')
         ]);
 
-        $action = new ParseAuctionsAction(new KartotekaParser('test.ru'));
+        $action = new ParseAuctionsAction((new KartotekaParser)->initUrl('test.ru'));
         $action->execute(0);
 
         $auction = Auction::firstWhere('number', 4221);

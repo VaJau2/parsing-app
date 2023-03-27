@@ -9,6 +9,7 @@ use App\Services\ParserService\DTO\AuctionDTO;
 use App\Services\ParserService\ParserInterface;
 use Carbon\Carbon;
 use DOMElement;
+use Exception;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -16,18 +17,28 @@ class KartotekaParser implements ParserInterface
 {
     private const TABLE_CLASS = 'data';
 
-    private readonly string $url;
+    private string $url;
     private Crawler $crawler;
 
-    public function __construct(string $url)
+    public function __construct()
+    {
+        $this->crawler = new Crawler();
+    }
+
+    /**
+     * @param string $url
+     * @return $this
+     */
+    public function initUrl(string $url): self
     {
         $this->url = $url;
-        $this->crawler = new Crawler();
+        return $this;
     }
 
     /**
      * @param int $page
      * @return array|AuctionDTO[]
+     * @throws Exception
      */
     public function parse(int $page): array
     {
@@ -55,9 +66,15 @@ class KartotekaParser implements ParserInterface
      *
      * @param int $page
      * @return string
+     * @throws Exception
      */
     private function requestData(int $page): string
     {
+        if (empty($this->url))
+        {
+            throw new Exception('Url is empty');
+        }
+
         $urlWithPage = $this->url . ($page > 1 ? "?page=$page" : '');
         $response = Http::get($urlWithPage);
         $responseBody = $response->body();

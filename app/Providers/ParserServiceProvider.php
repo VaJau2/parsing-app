@@ -13,6 +13,6 @@ class ParserServiceProvider extends ServiceProvider
         $parserClass = config("parsing.parsers.$parserCode.class");
         $parserUrl = config("parsing.parsers.$parserCode.url");
 
-        $this->app->bind(ParserInterface::class, fn($app) => new $parserClass($parserUrl));
+        $this->app->bind(ParserInterface::class, fn($app) => (new $parserClass())->initUrl($parserUrl));
     }
 }
