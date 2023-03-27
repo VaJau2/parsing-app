@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('auctions', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->string('state');
+            $table->string('status');
+            $table->string('debtor_name');
             $table->timestamp('date_start')->nullable();
             $table->timestamps();
 

@@ -10,3 +10,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/auctions', [AuctionsController::class, 'get'])->name('GetAuction');
+Route::post('/parse', [AuctionsController::class, 'parse'])->name('ParseAuctions');

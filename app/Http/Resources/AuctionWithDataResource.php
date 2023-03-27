@@ -20,7 +20,10 @@ class AuctionWithDataResource extends JsonResource
     {
         return [
             'number' => $this->number,
-            'state' => $this->state,
+            'status' => $this->status,
+            'debtor' => [
+                'name' => $this->debtor_name,
+            ],
             'organizer' => new OrganizerResource($this->organizer),
             'lots' => LotResource::collection($this->lots),
         ];

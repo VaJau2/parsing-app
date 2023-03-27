@@ -23,6 +23,8 @@ class Organizer extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function auctions(): HasMany
     {
         return $this->hasMany(Auction::class);

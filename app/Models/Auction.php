@@ -15,7 +15,8 @@ use Illuminate\Support\Collection;
  *
  * @property int $id
  * @property string $number
- * @property string $state
+ * @property string $status
+ * @property string $debtor_name
  * @property CarbonInterface|null $date_start
  * @property CarbonInterface|null $created_at
  * @property CarbonInterface|null $updated_at
@@ -26,6 +27,11 @@ use Illuminate\Support\Collection;
 class Auction extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'number', 'status', 'debtor_name',
+        'date_start', 'organizer_id',
+    ];
 
     public function lots(): HasMany
     {

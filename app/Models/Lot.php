@@ -22,6 +22,8 @@ class Lot extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['description', 'auction_id'];
+
     public function auction(): BelongsTo
     {
         return $this->belongsTo(Auction::class);

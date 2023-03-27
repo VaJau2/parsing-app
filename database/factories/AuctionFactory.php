@@ -19,8 +19,9 @@ class AuctionFactory extends Factory
     {
         return [
             'number' => Str::random(6),
-            'state' => fake()->text(),
+            'status' => fake()->text(),
             'date_start' => Date::now(),
+            'debtor_name' => fake()->name(),
         ];
     }
 }
